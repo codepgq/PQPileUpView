@@ -20,8 +20,10 @@
     NSArray * array = @[@"公司",@"公司地方",@"公司东方闪电",@"3地方公司",@"公司是的发送到",@"公司",@"公司",@"公司地方",@"公司东方闪电",@"3地方公司",@"公司是的发送到",@"公司",@"公司",@"公司地方",@"公司东方闪电",@"3地方公司",@"公司是的发送到",@"公司",@"公司",@"公司地方",@"公司东方闪电",@"3地方公司",@"公司是的发送到",@"公司",@"公司",@"公司地方",@"公司东方闪电",@"3地方公司",@"公司是的发送到",@"公司",@"公司",@"公司地方",@"公司东方闪电",@"3地方公司",@"公司是的发送到",@"公司"];
     self.pileUpView = [PQPileUpView pq_createPileUpWithFrame:CGRectMake(0, 100, self.view.bounds.size.width, 200) maxH:30 titles:array titlesColor:nil click:^(UIButton *button, NSInteger tag) {
         NSLog(@"%@ %d",button.titleLabel.text,(int)tag);
-    } clear:^(UIButton *button) {
-        NSLog(@"clear");
+    } clear:^(PQPileUpView * view, UIButton *button){
+        
+        // 传入YES 清空 NO 不清空
+         view.block(YES);
     }];
     [self.view addSubview:self.pileUpView];
     

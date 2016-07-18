@@ -57,7 +57,7 @@
 
 // event
 - (void)clearClick:(UIButton *)button{
-    self.clearBlock(button);
+    self.clearBlock(self,button);
 }
 
 - (void)selectClick:(UIButton *)button{
@@ -123,6 +123,15 @@
     if (self) {
         self.maxH = 30;
         self.scrollMaxH = 0;
+        __weak typeof(self) weakSelf = self;
+        self.block = ^(BOOL isClear){
+            if (isClear == YES) {
+                for (UIButton * btn in weakSelf.scrollView.subviews) {
+                    [btn removeFromSuperview];
+                }
+                [weakSelf.titles removeAllObjects];
+            }
+        };
     }
     return self;
 }
