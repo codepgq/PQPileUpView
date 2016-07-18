@@ -24,6 +24,8 @@
         NSLog(@"clear");
     }];
     [self.view addSubview:self.pileUpView];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
