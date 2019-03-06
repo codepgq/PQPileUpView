@@ -10,6 +10,6 @@
 
 @interface PQCalculatePosition : UIView
 
-+ (CGRect)pq_calculatePositionWithMaxSize:(CGSize)maxSize lastFrame:(CGRect)lastFrame selfSize:(CGSize)selfSize;
++ (CGRect)pq_calculatePositionWithMaxSize:(CGSize)maxSize lastFrame:(CGRect)lastFrame selfSize:(CGSize)selfSize marginPoint:(CGPoint)marginPoint;
 
 @end

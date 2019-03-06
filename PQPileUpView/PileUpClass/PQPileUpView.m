@@ -97,7 +97,7 @@
         //创建按钮
         UIButton * button = (UIButton *)self.scrollView.subviews[i] ;
         //计算frame
-        nowFrame =  [PQCalculatePosition pq_calculatePositionWithMaxSize:self.maxSize lastFrame:lastFrame selfSize:button.frame.size];
+        nowFrame =  [PQCalculatePosition pq_calculatePositionWithMaxSize:self.maxSize lastFrame:lastFrame selfSize:button.frame.size marginPoint:self.marginPoint];
         button.frame = nowFrame;
         lastFrame = nowFrame;
         
@@ -149,7 +149,7 @@
         //创建按钮
         UIButton * button = [self getButtonWithText:self.titles[i] backgroundColor:color tag:i];
         //计算frame
-        nowFrame =  [PQCalculatePosition pq_calculatePositionWithMaxSize:self.maxSize lastFrame:lastFrame selfSize:[self reallySizeWithButton:button]];
+        nowFrame =  [PQCalculatePosition pq_calculatePositionWithMaxSize:self.maxSize lastFrame:lastFrame selfSize:[self reallySizeWithButton:button] marginPoint:self.marginPoint];
         button.frame = nowFrame;
         lastFrame = nowFrame;
         //添加到scrollView中
@@ -169,7 +169,7 @@
     self.scrollView.contentSize = CGSizeMake(0, self.scrollMaxH+30);
     
     //添加清除按钮
-    [self.scrollView addSubview:self.clearBtn];
+//    [self.scrollView addSubview:self.clearBtn];
     
     [self addSubview:self.scrollView];
 }
@@ -211,7 +211,7 @@
     
 }
 
-+ (instancetype)pq_createPileUpWithFrame:(CGRect)frame maxH:(CGFloat)maxH titles:(NSArray*)titles titlesColor:(NSArray *)colors click:(PQClickBlock)clickBlock clear:(PQClearBlock)clearBlock{
++ (instancetype)pq_createPileUpWithFrame:(CGRect)frame maxH:(CGFloat)maxH titles:(NSArray*)titles titlesColor:(NSArray *)colors marginPoint:(CGPoint)marginPoint click:(PQClickBlock)clickBlock clear:(PQClearBlock)clearBlock{
     PQPileUpView * pileUpView = [[PQPileUpView alloc]initWithFrame:frame];
     pileUpView.maxH = maxH;
     pileUpView.clickBlock = clickBlock;
@@ -219,6 +219,7 @@
     pileUpView.colors = colors;
     pileUpView.titles = [NSMutableArray arrayWithArray:titles];
     pileUpView.maxSize = CGSizeMake(pileUpView.frame.size.width, pileUpView.maxH);
+    pileUpView.marginPoint = marginPoint;
     [pileUpView setUp];
     return pileUpView;
 }
